@@ -1,0 +1,8 @@
+name: ItemPlugin
+version: '1.0-SNAPSHOT'
+main: org.chocon.itemPlugin.ItemPlugin
+api-version: '1.21'
+commands:
+  giveWeapon:
+    usage: /giveWeapon <weaponName>
+    description: Give player a weapon

@@ -1,0 +1,9 @@
+org\chocon\itemPlugin\Item\Attack\AttackType.class
+org\chocon\itemPlugin\Item\Weapon\Weapon$1.class
+org\chocon\itemPlugin\Item\Weapon\Weapon.class
+org\chocon\itemPlugin\Item\Weapon\WeaponType.class
+org\chocon\itemPlugin\Item\Weapon\WeaponAttributeType.class
+org\chocon\itemPlugin\Command\GiveWeaponCommand.class
+org\chocon\itemPlugin\Listener\WeaponListener.class
+org\chocon\itemPlugin\Support\MyUtil.class
+org\chocon\itemPlugin\ItemPlugin.class
