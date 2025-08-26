@@ -1,0 +1,4 @@
+name: RolePlugin
+version: '1.0-SNAPSHOT'
+main: org.chocon.bedwar.roleplugin.RolePlugin
+api-version: '1.21'

@@ -1,0 +1,7 @@
+roles:
+  Admin:
+    permissions:
+      - "role.admin"
+  Innocent:
+    permissions:
+      - "role.innocent"
