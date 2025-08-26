@@ -1,0 +1,4 @@
+name: ShopPlugin
+version: '1.0-SNAPSHOT'
+main: org.chocon.shopPlugin.ShopPlugin
+api-version: '1.21'
