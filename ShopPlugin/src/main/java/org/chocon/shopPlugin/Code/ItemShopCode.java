@@ -2,9 +2,9 @@ package org.chocon.shopPlugin.Code;
 
 public enum ItemShopCode {
     // Weapons
-    WOODEN_SWORD("wooden_sword"),
     STONE_SWORD("stone_sword"),
     IRON_SWORD("iron_sword"),
+    DIAMOND_SWORD("diamond_sword"),
 
     // Blocks
     WOOL("wool"),

@@ -1,4 +1,4 @@
-package org.chocon.shopPlugin.Listener.Shop.Support;
+package org.chocon.shopPlugin.Listener.Shop.Model;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,7 +11,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.chocon.shopPlugin.Code.IngredientCode;
 import org.chocon.shopPlugin.Code.ItemShopCode;
+import org.chocon.shopPlugin.Listener.Shop.Constructor.AbstractShopListener;
 import org.chocon.shopPlugin.ShopPlugin;
 
 public class ItemShopListener extends AbstractShopListener implements Listener {
@@ -22,7 +24,7 @@ public class ItemShopListener extends AbstractShopListener implements Listener {
     //========================================Constructor=========================================
     public ItemShopListener(ShopPlugin plugin) {
         this.plugin = plugin;
-        this.key = new NamespacedKey(plugin, "item_shop");
+        this.key = new NamespacedKey(plugin, "item shop");
     }
 
     //===========================================Event============================================
@@ -39,13 +41,11 @@ public class ItemShopListener extends AbstractShopListener implements Listener {
             return;
         }
         if (!meta.getPersistentDataContainer().has(key, PersistentDataType.STRING)) return;
-
-        e.setCancelled(true); // cancel taking item action
+        e.setCancelled(true);
         String codeStr = meta.getPersistentDataContainer().get(key, PersistentDataType.STRING);
         ItemShopCode code = ItemShopCode.fromString(codeStr);
 
         if (code == null) return;
-
         switch (code) {
             // Open submenus
             case OPEN_WEAPON_MENU:
@@ -66,15 +66,56 @@ public class ItemShopListener extends AbstractShopListener implements Listener {
                 createShopMenu(player);
                 break;
 
-            // Buy items
-            case WOODEN_SWORD:
-                buyItem(player, Material.WOODEN_SWORD, 10, Material.IRON_INGOT);
-                break;
+            // Weapons
             case STONE_SWORD:
-                buyItem(player, Material.STONE_SWORD, 20, Material.IRON_INGOT);
+                buyItem(player, IngredientCode.IRON, 20, Material.STONE_SWORD);
                 break;
             case IRON_SWORD:
-                buyItem(player, Material.IRON_SWORD, 4, Material.GOLD_INGOT);
+                buyItem(player, IngredientCode.GOLD, 4, Material.IRON_SWORD);
+                break;
+            case DIAMOND_SWORD:
+                buyItem(player, IngredientCode.EMERALD, 4, Material.DIAMOND_SWORD);
+
+            // Blocks
+            case WOOL:
+                buyItem(player, IngredientCode.IRON, 16, 4, Material.WHITE_WOOL); // 16x Wool - 4 Iron
+                break;
+            case WOODEN_PLANK:
+                buyItem(player, IngredientCode.IRON, 12, 24, Material.END_STONE); // 12x End Stone - 24 Iron
+                break;
+            case OBSIDIAN:
+                buyItem(player, IngredientCode.EMERALD, 4, 4, Material.OBSIDIAN); // 4x Obsidian - 4 Emerald
+                break;
+
+            // Armors
+            case CHAIN_AMOR:
+                buyItem(player, IngredientCode.IRON, 40, Material.CHAINMAIL_BOOTS);
+                buyItem(player, IngredientCode.IRON, 0, Material.CHAINMAIL_LEGGINGS);
+                break;
+            case IRON_AMOR:
+                buyItem(player, IngredientCode.GOLD, 12, Material.IRON_BOOTS);
+                buyItem(player, IngredientCode.GOLD, 0, Material.IRON_LEGGINGS);
+                break;
+            case DIAMOND_AMOR:
+                buyItem(player, IngredientCode.EMERALD, 6, Material.DIAMOND_BOOTS);
+                buyItem(player, IngredientCode.EMERALD, 0, Material.DIAMOND_LEGGINGS);
+                break;
+
+            // Utilities
+            case FIRE_BALL:
+                buyItem(player, IngredientCode.IRON, 40, Material.FIRE_CHARGE);
+                break;
+            case ENDER_PEARL:
+                buyItem(player, IngredientCode.EMERALD, 4, Material.ENDER_PEARL);
+                break;
+            case TNT:
+                buyItem(player, IngredientCode.GOLD, 8, Material.TNT);
+                break;
+            case GOLDEN_APPLE:
+                buyItem(player, IngredientCode.GOLD, 3, Material.GOLDEN_APPLE);
+                break;
+            case IRON_GOLEM_EGG:
+                buyItem(player, IngredientCode.GOLD, 120, Material.IRON_GOLEM_SPAWN_EGG);
                 break;
         }
     }
@@ -99,12 +140,12 @@ public class ItemShopListener extends AbstractShopListener implements Listener {
     private void createWeaponMenu(Player player) {
         Inventory inv = Bukkit.createInventory(null, 27, "Weapons");
 
-        inv.setItem(10, createMenuItem(Material.WOODEN_SWORD, "Wood Sword - 10 Iron",
-                ItemShopCode.WOODEN_SWORD.toString()));
-        inv.setItem(12, createMenuItem(Material.STONE_SWORD, "Stone Sword - 20 Iron",
+        inv.setItem(10, createMenuItem(Material.STONE_SWORD, "Stone Sword - 20 Iron",
                 ItemShopCode.STONE_SWORD.toString()));
-        inv.setItem(14, createMenuItem(Material.IRON_SWORD, "Iron Sword - 4 Gold",
+        inv.setItem(12, createMenuItem(Material.IRON_SWORD, "Iron Sword - 4 Gold",
                 ItemShopCode.IRON_SWORD.toString()));
+        inv.setItem(14, createMenuItem(Material.WOODEN_SWORD, "Diamond Sword - 4 Emerald",
+                ItemShopCode.DIAMOND_SWORD.toString()));
 
         inv.setItem(26, createMenuItem(Material.ARROW, ChatColor.YELLOW + "Back",
                 ItemShopCode.BACK.toString()));
@@ -179,13 +220,36 @@ public class ItemShopListener extends AbstractShopListener implements Listener {
         return item;
     }
 
-    private void buyItem(Player player, Material item, int cost, Material currency) {
-        if (player.getInventory().containsAtLeast(new ItemStack(currency), cost)) {
-            player.getInventory().removeItem(new ItemStack(currency, cost));
-            player.getInventory().addItem(new ItemStack(item));
-            player.sendMessage(ChatColor.GREEN + "Purchased " + item.name() + "!");
+    private void buyItem(Player player, IngredientCode ingredient, int cost, Material item) {
+        ItemStack reward = new ItemStack(item, 1);
+        ItemStack payment = ingredient.getItem(1);
+
+        if (player.getInventory().containsAtLeast(payment, cost)) {
+            ItemStack toRemove = ingredient.getItem(cost);
+            player.getInventory().removeItem(toRemove);
+            player.getInventory().addItem(reward);
+
+            player.sendMessage(ChatColor.GREEN + "Purchased " + ingredient.name() + "!");
         } else {
-            player.sendMessage(ChatColor.RED + "Not enough " + currency.name() + "!");
+            player.sendMessage(ChatColor.RED + "Not enough " + ingredient.name() + "!");
+        }
+    }
+
+
+
+    private void buyItem(Player player, IngredientCode ingredient, int amount,
+                         int cost, Material item) {
+        ItemStack reward = new ItemStack(item, amount);
+        ItemStack payment = ingredient.getItem(1);
+
+        if (player.getInventory().containsAtLeast(payment, cost)) {
+            ItemStack toRemove = ingredient.getItem(cost);
+            player.getInventory().removeItem(toRemove);
+            player.getInventory().addItem(reward);
+
+            player.sendMessage(ChatColor.GREEN + "Purchased " + amount + "x " + item.name() + "!");
+        } else {
+            player.sendMessage(ChatColor.RED + "Not enough " + ingredient.name() + "!");
         }
     }
 }

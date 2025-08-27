@@ -1,4 +1,4 @@
-package org.chocon.shopPlugin.Listener.Shop;
+package org.chocon.shopPlugin.Listener.Shop.Model;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -8,8 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.chocon.shopPlugin.Code.ShopCode;
-import org.chocon.shopPlugin.Listener.Shop.Support.ItemShopListener;
-import org.chocon.shopPlugin.Listener.Shop.Support.UpgradeShopListener;
 import org.chocon.shopPlugin.ShopPlugin;
 
 public class ShopListener implements Listener {
@@ -17,6 +15,7 @@ public class ShopListener implements Listener {
     private final UpgradeShopListener upgradeShopListener;
     private final ShopPlugin plugin;
     public static NamespacedKey SHOP_KEY;
+    public static NamespacedKey INGREDIENT_KEY;
 
     public ShopListener(ShopPlugin plugin, ItemShopListener itemShopListener,
                         UpgradeShopListener upgradeShopListener) {
@@ -24,6 +23,7 @@ public class ShopListener implements Listener {
         this.itemShopListener = itemShopListener;
         this.upgradeShopListener = upgradeShopListener;
         SHOP_KEY = new NamespacedKey(this.plugin, "shop");
+        INGREDIENT_KEY = new NamespacedKey(this.plugin, "ingredient");
     }
 
     //===========================================Event============================================

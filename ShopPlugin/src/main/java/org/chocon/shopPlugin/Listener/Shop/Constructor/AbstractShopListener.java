@@ -1,4 +1,4 @@
-package org.chocon.shopPlugin.Listener.Shop.Support;
+package org.chocon.shopPlugin.Listener.Shop.Constructor;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

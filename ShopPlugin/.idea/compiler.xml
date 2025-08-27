@@ -9,8 +9,5 @@
         <module name="ShopPlugin" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ShopPlugin" target="21" />
-    </bytecodeTargetLevel>
   </component>
 </project>
