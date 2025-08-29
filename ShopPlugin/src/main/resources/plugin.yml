@@ -1,4 +1,8 @@
 name: ShopPlugin
 version: '1.0-SNAPSHOT'
-main: org.chocon.shopPlugin.ShopPlugin
+main: org.chocon.bedwar.shopplugin.ShopPlugin
 api-version: '1.21'
+depend: [RolePlugin]
+commands:
+  spawn:
+    description: Spawn a shop

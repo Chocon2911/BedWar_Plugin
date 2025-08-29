@@ -1,9 +1,9 @@
-package org.chocon.shopPlugin.Entity;
+package org.chocon.bedwar.shopplugin.Entity;
 
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
-import org.chocon.shopPlugin.Component.GeneratorStat;
-import org.chocon.shopPlugin.ShopPlugin;
+import org.chocon.bedwar.shopplugin.Component.GeneratorStat;
+import org.chocon.bedwar.shopplugin.ShopPlugin;
 
 import java.util.List;
 import java.util.Map;
@@ -12,21 +12,23 @@ public class GeneratorMachine {
     //==========================================Variable==========================================
     private final ShopPlugin plugin;
     private final Map<Integer, List<GeneratorStat>> levelStats;
+    private int level;
     private final Location location;
 
     /*========================================Constructor=========================================*/
     public GeneratorMachine(ShopPlugin plugin, Map<Integer, List<GeneratorStat>> levelStats,
-                            Location location) {
+                            Location location, int level) {
         this.plugin = plugin;
         this.levelStats = levelStats;
         this.location = location;
+        this.level = level;
     }
 
     //===========================================Method===========================================
-    public void generateAtLevel(int level) {
-        if (!levelStats.containsKey(level)) return;
+    public void generateAtLevel() {
+        if (!levelStats.containsKey(this.level)) return;
 
-        List<GeneratorStat> stats = levelStats.get(level);
+        List<GeneratorStat> stats = levelStats.get(this.level);
         for (GeneratorStat stat : stats) {
             if (stat.canGenerate()) {
                 spawnIngredient(stat);

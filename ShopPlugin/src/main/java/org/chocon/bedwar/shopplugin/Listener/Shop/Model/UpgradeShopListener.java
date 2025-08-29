@@ -1,11 +1,11 @@
-package org.chocon.shopPlugin.Listener.Shop.Model;
+package org.chocon.bedwar.shopplugin.Listener.Shop.Model;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.chocon.shopPlugin.Listener.Shop.Constructor.AbstractShopListener;
-import org.chocon.shopPlugin.ShopPlugin;
+import org.chocon.bedwar.shopplugin.Listener.Shop.Constructor.AbstractShopListener;
+import org.chocon.bedwar.shopplugin.ShopPlugin;
 
 public class UpgradeShopListener extends AbstractShopListener implements Listener {
     //==========================================Variable==========================================

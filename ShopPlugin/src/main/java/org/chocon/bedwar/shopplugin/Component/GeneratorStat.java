@@ -1,6 +1,6 @@
-package org.chocon.shopPlugin.Component;
+package org.chocon.bedwar.shopplugin.Component;
 
-import org.chocon.shopPlugin.Code.IngredientCode;
+import org.chocon.bedwar.shopplugin.Code.IngredientCode;
 
 public class GeneratorStat {
     //==========================================Variable==========================================

@@ -1,9 +1,8 @@
-package org.chocon.shopPlugin;
+package org.chocon.bedwar.shopplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ShopPlugin extends JavaPlugin {
-
     @Override
     public void onEnable() {
         // Plugin startup logic

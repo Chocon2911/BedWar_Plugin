@@ -1,4 +1,4 @@
-package org.chocon.shopPlugin.Listener.Shop.Constructor;
+package org.chocon.bedwar.shopplugin.Listener.Shop.Constructor;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

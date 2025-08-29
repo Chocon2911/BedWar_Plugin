@@ -5,3 +5,6 @@ roles:
   Innocent:
     permissions:
       - "role.innocent"
+  Watcher:
+    permissions:
+      - "role.watcher"

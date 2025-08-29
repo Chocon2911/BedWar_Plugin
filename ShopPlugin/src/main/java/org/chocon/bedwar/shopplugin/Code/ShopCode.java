@@ -1,4 +1,4 @@
-package org.chocon.shopPlugin.Code;
+package org.chocon.bedwar.shopplugin.Code;
 
 public enum ShopCode {
     //============================================Code============================================

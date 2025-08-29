@@ -1,4 +1,4 @@
-package org.chocon.shopPlugin.Listener.Shop.Model;
+package org.chocon.bedwar.shopplugin.Listener.Shop.Model;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -7,8 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.persistence.PersistentDataType;
-import org.chocon.shopPlugin.Code.ShopCode;
-import org.chocon.shopPlugin.ShopPlugin;
+import org.chocon.bedwar.shopplugin.Code.ShopCode;
+import org.chocon.bedwar.shopplugin.ShopPlugin;
 
 public class ShopListener implements Listener {
     private final ItemShopListener itemShopListener;

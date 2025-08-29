@@ -1,0 +1,38 @@
+{
+  "emerald": {
+    "level1": [
+      { "delay": 30000, "amount": 1, "ingredient": "EMERALD" }
+    ],
+    "level2": [
+      { "delay": 20000, "amount": 1, "ingredient": "EMERALD" }
+    ],
+    "level3": [
+      { "delay": 15000, "amount": 2, "ingredient": "EMERALD" }
+    ]
+  },
+  "diamond": {
+    "level1": [
+      { "delay": 20000, "amount": 1, "ingredient": "DIAMOND" }
+    ],
+    "level2": [
+      { "delay": 15000, "amount": 1, "ingredient": "DIAMOND" }
+    ],
+    "level3": [
+      { "delay": 10000, "amount": 2, "ingredient": "DIAMOND" }
+    ]
+  },
+  "base": {
+    "level1": [
+      { "delay": 1000, "amount": 1, "ingredient": "IRON" },
+      { "delay": 3000, "amount": 1, "ingredient": "GOLD" }
+    ],
+    "level2": [
+      { "delay": 800, "amount": 1, "ingredient": "IRON" },
+      { "delay": 2500, "amount": 1, "ingredient": "GOLD" }
+    ],
+    "level3": [
+      { "delay": 600, "amount": 2, "ingredient": "IRON" },
+      { "delay": 2000, "amount": 2, "ingredient": "GOLD" }
+    ]
+  }
+}

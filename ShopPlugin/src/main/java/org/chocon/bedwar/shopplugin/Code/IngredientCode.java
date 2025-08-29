@@ -1,10 +1,10 @@
-package org.chocon.shopPlugin.Code;
+package org.chocon.bedwar.shopplugin.Code;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.chocon.shopPlugin.Listener.Shop.Model.ShopListener;
+import org.chocon.bedwar.shopplugin.Listener.Shop.Model.ShopListener;
 
 public enum IngredientCode {
     //============================================Code============================================
